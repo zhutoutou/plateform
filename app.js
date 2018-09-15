@@ -4,9 +4,9 @@ const debug = require('debug')('koa-weapp-demo')
 const response = require('./middlewares/response')
 const config = require('./config')
 const path = require('path')
-const fs = require('fs')
 const moment = require('moment')
 const {bodyParser} = require('./wxpay')
+const init = require('./utils/init')
 
 // 引入微信服务器认证Token /name
 app.use(require('koa-static')(path.join(__dirname, '/static')))
@@ -38,3 +38,6 @@ app.use(router.routes())
 
 // 启动程序，监听端口
 app.listen(config.port, () => debug(`listening on port ${config.port}`))
+
+// 初始化配置获取accessToken
+init()

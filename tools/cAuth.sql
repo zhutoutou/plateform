@@ -21,7 +21,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 --  Table structure for `cSessionInfo`
 -- ----------------------------
 DROP TABLE IF EXISTS `cSessionInfo`;
-CREATE TABLE `cSessionInfo` (
+CREATE TABLE `cSessionInfo`  (
   `open_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `uuid` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `skey` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -32,6 +32,23 @@ CREATE TABLE `cSessionInfo` (
   PRIMARY KEY (`open_id`),
   KEY `openid` (`open_id`) USING BTREE,
   KEY `skey` (`skey`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='会话管理用户信息';
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- ----------------------------
+--  Table structure for `cUser`
+-- ----------------------------
+DROP TABLE IF EXISTS `cUser`;
+CREATE TABLE `cUser`  (
+  `open_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `access_token` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `refresh_token` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expires_in` int(11) NOT NULL,
+  `unionid` varchar(100) COLLATE utf8mb4_unicode_ci,
+  `user_info` varchar(2048) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`open_id`),
+  KEY `openid` (`open_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='会话管理用户信息';
 
 SET FOREIGN_KEY_CHECKS = 1;
