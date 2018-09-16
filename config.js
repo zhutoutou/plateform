@@ -36,7 +36,7 @@ const CONF = {
             mch_expire: '30',
             unifiedorderUrl: 'https://api.mch.weixin.qq.com/pay/unifiedorder',
             sign_key: 'a5cfcc192e86054822b2a24ac89ebf5d'
-        },
+        }
     },
     // 公众平台配置
     platform: {
@@ -71,6 +71,26 @@ const CONF = {
             mch_expire: '30',
             unifiedorderUrl: 'https://api.mch.weixin.qq.com/pay/unifiedorder',
             sign_key: 'a5cfcc192e86054822b2a24ac89ebf5d'
+        },
+        menu: {
+            button: [
+                {
+                    type: 'miniprogram',
+                    name: '明星打榜',
+                    url: 'http://mp.weixin.qq.com',
+                    appid: 'wxed2da0fb9fff4b48',
+                    pagepath: 'pages/login/main'
+                },
+                {
+                    type: 'view',
+                    name: '冲榜',
+                    url: 'https://image2.pkfis.cn/page/#/Support'
+                }
+            ]
+        },
+        msg: {
+            autoRep: '点击下方明星打榜！为你的爱豆打榜吧',
+            focusRep: `欢迎你来＾ᗜ＾\n点击下方菜单“明星打榜”\n为喜欢的明星打榜。\n点击下方：“冲榜”，即可为喜欢的明星加票哦\n☟\n☟\n☟`
         }
     }
 }

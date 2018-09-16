@@ -27,15 +27,14 @@ router.post('/notify', notifyorderMiddleware, controllers.notify.post)
 router.get('/test', signMiddleware, controllers.test)
 
 // POST 公众号支付通知小程序
-router.post('/paymininotify',controllers.paymininotify)
+router.post('/paymininotify', controllers.paymininotify)
 
 // 获取小程序对应的openid
-router.get('/miniopenid',controllers.miniopenid)
+router.get('/miniopenid', controllers.miniopenid)
 
 // 获取明星信息
-router.get('/starlist',controllers.starlist)
+router.get('/starlist', controllers.starlist)
 // 获取明星信息
-router.get('/findstar',controllers.findstar)
-
+router.get('/findstar', controllers.findstar)
 
 module.exports = router

@@ -5,14 +5,14 @@ const {mysql} = require('../wxpay')
 const saveUserInfo = async(openid, access_token, refresh_token, expires_in, unionid, userinfo) => {
     const findRes = await mysql('cUser')
                             .count('open_id as hasUser')
-                            .where({open_id:openid})
+                            .where({open_id: openid})
     if (!findRes[0].hasUser) {
         await mysql('cUser')
-                .insert({open_id:openid, access_token, refresh_token, expires_in, unionid, user_info:JSON.stringify(userinfo)})
+                .insert({open_id: openid, access_token, refresh_token, expires_in, unionid, user_info: JSON.stringify(userinfo)})
     } else {
         await mysql('cUser')
-                .update({access_token, refresh_token, expires_in, unionid, user_info:JSON.stringify(userinfo)})
-                .where({open_id:openid})
+                .update({access_token, refresh_token, expires_in, unionid, user_info: JSON.stringify(userinfo)})
+                .where({open_id: openid})
     }
 }
 
