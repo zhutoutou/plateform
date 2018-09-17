@@ -110,7 +110,7 @@ const menuCreate = async (params) => {
 /**
  * 获取用户信息
  */
-const getUnionid = async(openid) =>{
+const getUnionid = async(openid) => {
     return new Promise(async(resolve, reject) => {
         try {
             if (!(constants.ACCESS_TOKEN && moment().diff(constants.ACCESS_TOKEN.expires_time, 's') < 0)) {
@@ -121,9 +121,9 @@ const getUnionid = async(openid) =>{
                 }
             }
             const res = await get(baseUrl + 'user/info', {
-                access_token:constants.ACCESS_TOKEN.access_token,
+                access_token: constants.ACCESS_TOKEN.access_token,
                 openid,
-                lang:'zh_CN'
+                lang: 'zh_CN'
             })
             if (res && !res.errcode && res.unionid) {
                 resolve(res.unionid)
@@ -149,8 +149,6 @@ const accessTokenDely = (time) => {
 const getjssdkDely = (time) => {
     _.debounce(getjssdk, 1000 * time, { 'maxWait': 1000 * 60 * 120 })
 }
-
-
 
 module.exports = {
     accessToken,

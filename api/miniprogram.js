@@ -93,9 +93,9 @@ const shouhu = (unionId, name) => {
             const res = await post(baseUrl + 'shouhu', {unionId, name})
             let rep
             if (res && res.result && res.data) {
-                rep = '守护成功^_^'
+                rep = `恭喜你成功为${name}贡献1个守护值。`
             } else if (res.error) {
-                switch(res.error){
+                switch (res.error) {
                     case '没有该明星团':
                         rep = '该明星还没有入驻,换一个试试吧'
                         break
@@ -103,7 +103,7 @@ const shouhu = (unionId, name) => {
                         rep = '你还没有自己的爱豆,先去小程序关注自己的爱豆吧'
                         break
                     case '今日已经签到了':
-                        rep = '一天只能守护一次,明天再来哦'
+                        rep = '每天只有一次为爱豆打榜的机会,想要继续打榜,可以邀请身边的好友一起为爱豆助力。'
                         break
                     default:
                         rep = res.error
