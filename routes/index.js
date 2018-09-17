@@ -11,8 +11,10 @@ const controllers = require('../controllers')
 const { order: {notifyorderMiddleware, unifiedorderMiddleware}, sign: {signMiddleware} } = require('../wxpay')
 
 // GET 验证服务
+// 微信验证
+router.get('/', controllers.wx.get)
 // 普通消息管理
-router.get('/', controllers.wx)
+router.post('/',controllers.wx.post)
 // GET 公众号登陆请求
 router.get('/login', controllers.login)
 // GET 公众号授权

@@ -81,20 +81,6 @@ async function getjssdk () {
 }
 
 /**
- *  延时执行下一次获取AccessToken的时间
- */
-const accessTokenDely = (time) => {
-    _.debounce(accessToken, 1000 * time, { 'maxWait': 1000 * 60 * 120 })
-}
-
-/**
- * 延时执行下一次获取GetjssdkTick的时间
- */
-const getjssdkDely = (time) => {
-    _.debounce(getjssdk, 1000 * time, { 'maxWait': 1000 * 60 * 120 })
-}
-
-/**
  * 更新menu
  * @param {Object} params
  * @returns {Boolean}
@@ -113,7 +99,7 @@ const menuCreate = async (params) => {
             if (res && !res.errcode && res.errmsg === 'ok') {
                 resolve(true)
             } else {
-                throw new Error(`请求失败,错误原因:${JSON.stringify(res)}`)
+                throw new Error(`menuCreate请求失败,错误原因:${JSON.stringify(res)}`)
             }
         } catch (e) {
             reject(e)
@@ -121,8 +107,54 @@ const menuCreate = async (params) => {
     })
 }
 
+/**
+ * 获取用户信息
+ */
+const getUnionid = async(openid) =>{
+    return new Promise(async(resolve, reject) => {
+        try {
+            if (!(constants.ACCESS_TOKEN && moment().diff(constants.ACCESS_TOKEN.expires_time, 's') < 0)) {
+                try {
+                    await accessToken()
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+            const res = await get(baseUrl + 'user/info', {
+                access_token:constants.ACCESS_TOKEN.access_token,
+                openid,
+                lang:'zh_CN'
+            })
+            if (res && !res.errcode && res.unionid) {
+                resolve(res.unionid)
+            } else {
+                throw new Error(`getUnionid请求失败,错误原因:${JSON.stringify(res)}`)
+            }
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+/**
+ *  延时执行下一次获取AccessToken的时间
+ */
+const accessTokenDely = (time) => {
+    _.debounce(accessToken, 1000 * time, { 'maxWait': 1000 * 60 * 120 })
+}
+
+/**
+ * 延时执行下一次获取GetjssdkTick的时间
+ */
+const getjssdkDely = (time) => {
+    _.debounce(getjssdk, 1000 * time, { 'maxWait': 1000 * 60 * 120 })
+}
+
+
+
 module.exports = {
     accessToken,
     getjssdk,
-    menuCreate
+    menuCreate,
+    getUnionid
 }

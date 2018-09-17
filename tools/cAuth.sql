@@ -75,3 +75,24 @@ CREATE TABLE `cOrder` (
 ) 
 ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+--  Table structure for `cMessage`
+-- ----------------------------
+DROP TABLE IF EXISTS `cMessage`;
+CREATE TABLE `cMessage` ( 
+    `id` int(11) NOT NULL AUTO_INCREMENT, 
+    `msg_id` int(11) NOT NULL, 
+    `open_id` varchar(50) NOT NULL, 
+    `req_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `rep_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `state` int(11) ,
+    `rep_content` varchar(2048) COLLATE utf8mb4_unicode_ci NOT NULL,
+    `msg_info` varchar(2048) COLLATE utf8mb4_unicode_ci NOT NULL,
+    PRIMARY KEY (`msg_id`) ,
+    KEY `msg_id` (`msg_id`) USING BTREE,
+    KEY `id` (id) USING BTREE,
+    KEY `open_id` (`open_id`) USING BTREE
+
+) 
+ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+
