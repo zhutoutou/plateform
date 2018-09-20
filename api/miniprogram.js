@@ -93,7 +93,7 @@ const shouhu = (unionId, name) => {
             const res = await post(baseUrl + 'shouhu', {unionId, name})
             let rep
             if (res && res.result && res.data) {
-                rep = `恭喜你成功为${name}贡献1个守护值。`
+                rep = `恭喜你成功为${name}贡献${res.data.count}个守护值。`
             } else if (res.error) {
                 switch (res.error) {
                     case '没有该明星团':
