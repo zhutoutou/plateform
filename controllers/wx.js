@@ -86,9 +86,12 @@ const textXMLRep = (ToUserName, FromUserName, CreateTime, Content) => {
         MsgType: 'text',
         Content
     })
-    // return `<xml><ToUserName><![CDATA[${ToUserName}]]></ToUserName><FromUserName><![CDATA[${FromUserName}]]></FromUserName><CreateTime>${CreateTime}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[${Content}]]></Content></xml>`
 }
 
+/**
+ * POST
+ * @param {Object} ctx
+ */
 const post = async (ctx) => {
     console.log(ctx.request.body)
     const msg_info = ctx.request.body
@@ -110,7 +113,8 @@ const post = async (ctx) => {
                 ctx.body = 'success'
             } else {
                 const reqTime = moment.unix(CreateTime).format('YYYY-MM-DD HH:mm:ss')
-                let state = 0 // 消息未处理
+                // 消息处理
+                let state = 0
                 switch (MsgType) {
                     case 'text':
                         const {Content} = msg_info
@@ -150,6 +154,10 @@ const post = async (ctx) => {
     }
 }
 
+/**
+ * GET
+ * @param {Object} ctx
+ */
 const get = async(ctx) => {
     const {signature, timestamp, nonce, echostr} = ctx.request.body
     const sha1 = crypto.createHash('sha1')
