@@ -14,7 +14,7 @@ const { order: {notifyorderMiddleware, unifiedorderMiddleware}, sign: {signMiddl
 // 微信验证
 router.get('/', controllers.wx.get)
 // 普通消息管理
-router.post('/',controllers.wx.post)
+router.post('/', controllers.wx.post)
 // GET 公众号登陆请求
 router.get('/login', controllers.login)
 // GET 公众号授权
@@ -38,5 +38,8 @@ router.get('/miniopenid', controllers.miniopenid)
 router.get('/starlist', controllers.starlist)
 // 获取明星信息
 router.get('/findstar', controllers.findstar)
+
+// 获取是否充值过
+router.post('/hascharge', controllers.hascharge)
 
 module.exports = router
